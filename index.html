@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reagvis Research Publications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #060e14;
+        --surface: #0d1c28;
+        --surface-2: #102537;
+        --text: #ecf5ff;
+        --muted: #a5bdd2;
+        --line: rgba(140, 181, 210, 0.24);
+        --brand: #32d6b0;
+        --brand-2: #2fa7ff;
+        --shadow: 0 20px 50px rgba(2, 10, 17, 0.45);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(1200px 600px at 90% -10%, rgba(47, 167, 255, 0.15), transparent 70%),
+          radial-gradient(900px 600px at -20% 10%, rgba(50, 214, 176, 0.13), transparent 70%),
+          var(--bg);
+      }
+
+      .page {
+        width: min(1080px, 92vw);
+        margin: 0 auto;
+        padding: 64px 0 84px;
+      }
+
+      .hero {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: linear-gradient(145deg, rgba(17, 37, 52, 0.9), rgba(8, 18, 27, 0.9));
+        box-shadow: var(--shadow);
+        padding: clamp(24px, 4vw, 44px);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9cefd9;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: linear-gradient(120deg, var(--brand), var(--brand-2));
+      }
+
+      h1 {
+        margin: 14px 0 14px;
+        max-width: 15ch;
+        font-family: "Sora", sans-serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1.12;
+      }
+
+      .subtext {
+        margin: 0;
+        max-width: 65ch;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .section-title {
+        margin: 44px 0 18px;
+        font-family: "Sora", sans-serif;
+        font-size: 1.35rem;
+      }
+
+      .pub-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 18px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: linear-gradient(160deg, var(--surface), var(--surface-2));
+        padding: 18px;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(50, 214, 176, 0.35);
+        color: #aff8e7;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .card h3 {
+        margin: 14px 0 10px;
+        font-size: 1.02rem;
+        line-height: 1.45;
+      }
+
+      .meta {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 0.93rem;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        appearance: none;
+        border: 1px solid transparent;
+        border-radius: 11px;
+        padding: 9px 13px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: linear-gradient(120deg, var(--brand), var(--brand-2));
+        color: #032226;
+      }
+
+      .btn-secondary {
+        background: rgba(220, 242, 255, 0.08);
+        border-color: var(--line);
+        color: var(--text);
+      }
+
+      .qr-wrap {
+        margin-top: 42px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: linear-gradient(160deg, rgba(10, 22, 33, 0.92), rgba(8, 15, 24, 0.92));
+        padding: 22px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .qr-row {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 20px;
+        align-items: center;
+      }
+
+      #qrImage {
+        width: 220px;
+        height: 220px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: #fff;
+        object-fit: cover;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field label {
+        font-weight: 600;
+      }
+
+      .url-input {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(210, 230, 245, 0.05);
+        color: var(--text);
+        font: inherit;
+        padding: 10px 12px;
+      }
+
+      .hint {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .link-preview {
+        margin: 4px 0 0;
+        color: #d2eeff;
+        word-break: break-all;
+      }
+
+      @media (max-width: 760px) {
+        .page {
+          padding: 32px 0 56px;
+        }
+
+        .qr-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <span class="eyebrow">Reagvis Research Lab</span>
+        <h1>Publications in Computer Vision and AI Forensics</h1>
+        <p class="subtext">
+          This page highlights our current research output. Links below point directly to PDF files
+          so the papers can be accessed right away while publication URLs are being finalized.
+        </p>
+      </section>
+
+      <h2 class="section-title">Publications</h2>
+      <section class="pub-grid" aria-label="Publication list">
+        <article class="card">
+          <span class="tag">CVPR Workshop</span>
+          <h3>Robust AI-Generated Image Detection in the Wild</h3>
+          <p class="meta">Computer vision, image forensics, synthetic media detection</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="./Robust_AI_Generated_Image_Detection_in_the_Wild_CVPRW.pdf" target="_blank" rel="noopener noreferrer">Read PDF</a>
+            <a class="btn btn-secondary" href="./Robust_AI_Generated_Image_Detection_in_the_Wild_CVPRW.pdf" download>Download</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="tag">CVPR Workshop</span>
+          <h3>Robust Deepfake Detection</h3>
+          <p class="meta">Computer vision, deepfake analysis, trust and authenticity</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="./Robut_Deepfake_detection__CVPRW.pdf" target="_blank" rel="noopener noreferrer">Read PDF</a>
+            <a class="btn btn-secondary" href="./Robut_Deepfake_detection__CVPRW.pdf" download>Download</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="qr-wrap" aria-label="QR code block">
+        <h2 class="section-title" style="margin: 0">QR for This Page</h2>
+        <div class="qr-row">
+          <img id="qrImage" alt="QR code linking to this publications page" />
+          <div class="field">
+            <label for="siteUrlInput">Public page URL</label>
+            <input
+              id="siteUrlInput"
+              class="url-input"
+              type="url"
+              placeholder="https://reagvis.com/research/publications"
+            />
+            <div class="actions">
+              <button id="updateQrBtn" class="btn btn-primary" type="button">Update QR</button>
+              <a id="openUrlBtn" class="btn btn-secondary" href="#" target="_blank" rel="noopener noreferrer">Open URL</a>
+            </div>
+            <p class="hint">
+              Paste the final deployed URL and click Update QR. If left empty, this page uses its
+              current URL automatically.
+            </p>
+            <p class="link-preview" id="urlPreview"></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const DEPLOYED_PUBLICATIONS_URL = "https://Fellow-DevJk.github.io/reagvis-publications-site/";
+      const inputEl = document.getElementById("siteUrlInput");
+      const qrEl = document.getElementById("qrImage");
+      const previewEl = document.getElementById("urlPreview");
+      const openBtnEl = document.getElementById("openUrlBtn");
+      const updateBtnEl = document.getElementById("updateQrBtn");
+
+      function toAbsoluteUrl(urlValue) {
+        try {
+          return new URL(urlValue).href;
+        } catch {
+          return "";
+        }
+      }
+
+      function currentPageUrl() {
+        return window.location.href;
+      }
+
+      function setQrFor(url) {
+        const qrSrc =
+          "https://api.qrserver.com/v1/create-qr-code/?size=440x440&margin=10&data=" +
+          encodeURIComponent(url);
+        qrEl.src = qrSrc;
+        previewEl.textContent = "QR target: " + url;
+        openBtnEl.href = url;
+      }
+
+      function updateQr() {
+        const entered = inputEl.value.trim();
+        const absolute = entered ? toAbsoluteUrl(entered) : currentPageUrl();
+        if (!absolute) {
+          previewEl.textContent = "Please enter a valid URL, for example: https://reagvis.com/publications";
+          return;
+        }
+        setQrFor(absolute);
+      }
+
+      updateBtnEl.addEventListener("click", updateQr);
+      if (DEPLOYED_PUBLICATIONS_URL) {
+        inputEl.value = DEPLOYED_PUBLICATIONS_URL;
+      }
+      updateQr();
+    </script>
+  </body>
+</html>
